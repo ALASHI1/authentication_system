@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %} <h1>Log-in</h1>
+
+<style>
+    .low{
+        position: relative;
+        top: 300px;
+    }
+</style>
+
+
+
+{% if form.errors %}
+<p>
+Your username and password didn't match. Please try again.
+       </p>
+     {% else %}
+<p>Please, use the following form to log-in:</p> {% endif %}
+<div class="login-form">
+<form action="{% url 'login' %}" method="post">
+{{ form.as_p }}
+{% csrf_token %}
+<input  type="hidden" name="next" value="{{ next }}" /> <p><input class=" btn btn-outline-dark  d-grid gap-2 col-6 mx-auto" type="submit" value="Log-in"></p>
+       </form>
+     </div>
+
+
+
+     <div class="low">
+         <footer>
+             <h3>
+                 Dont have an account <a class=" btn btn-outline-info  d-grid gap-2 col-6 mx-auto" href="{% url 'register' %}">Sign up here</a>   
+             </h3>
+         </footer>
+     </div>
+   {% endblock %}
